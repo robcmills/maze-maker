@@ -1,0 +1,12 @@
+
+.maze-square {
+  border: 1px solid lightgray;
+  display: grid;
+  position: absolute;
+}
+
+.square-path {
+  background-color: blue;
+  position: absolute;
+  transform-origin: left top;
+}
