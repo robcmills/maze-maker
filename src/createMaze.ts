@@ -56,6 +56,7 @@ export function createMaze({ height, width }: CreateMazeArgs): MazeSquare[][] {
   const MAX_ITERATIONS = 10000;
   let iteration = 0;
   let currentSquare: MazeSquare = mazeMatrix[0][0];
+  let previousSquare: MazeSquare = currentSquare;
   let unvisitedNeighbors: MazeSquare[] = [];
   while (!currentSquare.isExit && iteration <= MAX_ITERATIONS) {
     iteration++;
@@ -66,10 +67,21 @@ export function createMaze({ height, width }: CreateMazeArgs): MazeSquare[][] {
       const nextSquare = unvisitedNeighbors[randomIndex];
       currentSquare.pathExit = getCardinal(currentSquare, nextSquare);
       nextSquare.pathEntrance = getCardinal(nextSquare, currentSquare);
+      previousSquare = currentSquare;
       currentSquare = nextSquare;
     } else {
       console.error('Dead end');
-      break;
+      while (unvisitedNeighbors.length === 0) {
+        const previousSquare = currentSquare.pathEntrance && currentSquare[currentSquare.pathEntrance];
+        if (!previousSquare) {
+          console.error('Got lost');
+          break;
+        }
+        // currentSquare.pathEntrance = undefined;
+        // previousSquare.pathExit = undefined;
+        currentSquare = previousSquare;
+        unvisitedNeighbors = getUnvisitedNeighbors(currentSquare);
+      }
     }
   }
 

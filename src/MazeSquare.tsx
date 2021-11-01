@@ -28,11 +28,21 @@ function getPathStyle(cardinal: Cardinal, size: number): CSSProperties {
   };
 }
 
+function getCardinalOpposite(cardinal: Cardinal): Cardinal {
+  return ({
+    north: 'south',
+    east: 'west',
+    south: 'north',
+    west: 'east',
+  } as Record<Cardinal, Cardinal>)[cardinal];
+}
+
 function hasWall(square: MazeSquareInterface, cardinal: Cardinal): boolean {
   return (
     !square[cardinal] ||
     square.pathEntrance !== cardinal &&
-    square.pathExit !== cardinal
+    square.pathExit !== cardinal &&
+    square[cardinal]?.pathEntrance !== getCardinalOpposite(cardinal)
   );
 }
 
