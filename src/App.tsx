@@ -4,7 +4,7 @@ import { Maze } from './Maze'
 export default function App() {
   return (
     <div className="app">
-      <Maze height={10} width={10} squareSize={30} renderSolutionPath={false} />
+      <Maze height={25} width={25} squareSize={20} renderSolutionPath={false} />
     </div>
   )
 }

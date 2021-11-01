@@ -52,9 +52,9 @@ const WALL_BORDER = '1px solid black';
 export function MazeSquare({ x, y, size, square, renderSolutionPath }: MazeSquareProps) {
   const style = {
     backgroundColor: square.isEntrance
-      ? 'lightgreen'
+      ? '#bdf5bd'
       : square.isExit
-      ? 'lightcoral'
+      ? '#fad1d1'
       : square.isVisited
       ? 'aliceblue'
       : 'white',

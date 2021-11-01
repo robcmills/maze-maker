@@ -2,6 +2,7 @@
 .maze-square {
   border: 1px solid lightgray;
   display: grid;
+  font-size: 0.5rem;
   position: absolute;
 }
 
