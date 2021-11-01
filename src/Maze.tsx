@@ -15,7 +15,7 @@ export function Maze({ height, width, squareSize, renderSolutionPath }: MazeProp
     return createMaze({ height, width });
   }, [height, width]);
 
-  console.log(maze);
+  console.log({ maze });
 
   const mazeNodes = [];
   for (let y = 0; y < height; y++) {

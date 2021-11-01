@@ -100,11 +100,6 @@ export function createMaze({ height, width }: CreateMazeArgs): MazeSquare[][] {
   if (currentSquare.isExit) {
     currentSquare.isVisited = true;
     unvisitedSquares.delete(currentSquare);
-    console.log(`Maze created in ${iteration} iterations`);
-  }
-
-  if (iteration >= MAX_ITERATIONS) {
-    console.error('Could not create a solution path');
   }
 
   // Fill in the unvisited squares
@@ -160,6 +155,10 @@ export function createMaze({ height, width }: CreateMazeArgs): MazeSquare[][] {
         }
       }
     }
+  }
+
+  if (iteration >= MAX_ITERATIONS) {
+    console.error(`Failed to create maze within ${MAX_ITERATIONS} iterations`);
   }
 
   return mazeMatrix;
